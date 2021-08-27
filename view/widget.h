@@ -5,12 +5,15 @@
 
 
 
-class MyWidget : public QWidget
+namespace view {
+
+
+class Widget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MyWidget(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
+    explicit Widget(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
 
 
     Q_SLOT void image_update(QImage img);
@@ -26,3 +29,6 @@ protected:
     QImage m_img;
 
 };
+
+
+}

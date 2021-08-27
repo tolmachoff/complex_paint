@@ -2,6 +2,10 @@
 
 #include <complex>
 
+
+namespace engine {
+
+
 using namespace std::complex_literals;
 
 
@@ -35,4 +39,7 @@ void ImageTransformer::image_update(QImage img)
     }
 
     emit image_rdy(std::move(new_img));
+}
+
+
 }

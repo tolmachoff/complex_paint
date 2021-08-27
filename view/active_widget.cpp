@@ -1,11 +1,15 @@
-#include "my_active_widget.h"
+#include "active_widget.h"
 
 #include <QPainter>
 #include <QMouseEvent>
 
 
-MyActiveWidget::MyActiveWidget(QWidget* parent, Qt::WindowFlags f)
-    : MyWidget(parent, f)
+
+namespace view {
+
+
+ActiveWidget::ActiveWidget(QWidget* parent, Qt::WindowFlags f)
+    : Widget(parent, f)
     , m_is_painting(false)
     , m_last_pos(-1, -1)
 {
@@ -13,14 +17,14 @@ MyActiveWidget::MyActiveWidget(QWidget* parent, Qt::WindowFlags f)
 }
 
 
-void MyActiveWidget::mousePressEvent(QMouseEvent* e)
+void ActiveWidget::mousePressEvent(QMouseEvent* e)
 {
     m_is_painting = true;
     e->accept();
 }
 
 
-void MyActiveWidget::mouseReleaseEvent(QMouseEvent* e)
+void ActiveWidget::mouseReleaseEvent(QMouseEvent* e)
 {
     m_is_painting = false;
     m_last_pos = {-1, -1};
@@ -28,7 +32,7 @@ void MyActiveWidget::mouseReleaseEvent(QMouseEvent* e)
 }
 
 
-void MyActiveWidget::mouseMoveEvent(QMouseEvent* e)
+void ActiveWidget::mouseMoveEvent(QMouseEvent* e)
 {
     if (m_is_painting) {
 
@@ -43,4 +47,7 @@ void MyActiveWidget::mouseMoveEvent(QMouseEvent* e)
         emit image_rdy(m_img);
     }
     e->accept();
+}
+
+
 }

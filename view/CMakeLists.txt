@@ -9,8 +9,8 @@ set(CMAKE_PREFIX_PATH "D:/Qt/5.15.2/mingw81_64")
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 set(SOURCE main.cpp
-           my_widget.cpp
-           my_active_widget.cpp
+        widget.cpp
+        active_widget.cpp
            image_transformer.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE})

@@ -1,4 +1,4 @@
-#include "my_widget.h"
+#include "widget.h"
 
 #include <QPainter>
 #include <QPaintEvent>
@@ -6,9 +6,10 @@
 #include <utility>
 
 
+namespace view {
 
 
-MyWidget::MyWidget(QWidget* parent, Qt::WindowFlags f)
+Widget::Widget(QWidget* parent, Qt::WindowFlags f)
     : QWidget(parent, f)
     , m_img(800, 600, QImage::Format_ARGB32)
 {
@@ -16,14 +17,14 @@ MyWidget::MyWidget(QWidget* parent, Qt::WindowFlags f)
 }
 
 
-void MyWidget::image_update(QImage img)
+void Widget::image_update(QImage img)
 {
     m_img = std::move(img);
     update();
 }
 
 
-void MyWidget::paintEvent(QPaintEvent* e)
+void Widget::paintEvent(QPaintEvent* e)
 {
     QPainter painter(this);
     painter.drawImage(img_to_window(QPoint(0, 0)), m_img);
@@ -34,7 +35,7 @@ void MyWidget::paintEvent(QPaintEvent* e)
 }
 
 
-QPoint MyWidget::window_to_img(QPoint p)
+QPoint Widget::window_to_img(QPoint p)
 {
     QPoint offs { (m_img.width() - width()) / 2,
                   (m_img.height() - height()) / 2 };
@@ -42,9 +43,12 @@ QPoint MyWidget::window_to_img(QPoint p)
 }
 
 
-QPoint MyWidget::img_to_window(QPoint p)
+QPoint Widget::img_to_window(QPoint p)
 {
     QPoint offs { (width() - m_img.width()) / 2,
                   (height() - m_img.height()) / 2 };
     return p + offs;
+}
+
+
 }

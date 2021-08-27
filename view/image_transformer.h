@@ -3,6 +3,9 @@
 #include <QImage>
 
 
+namespace engine {
+
+
 class ImageTransformer : public QObject
 {
     Q_OBJECT
@@ -13,3 +16,6 @@ public:
     Q_SLOT void image_update(QImage img);
 
 };
+
+
+}
