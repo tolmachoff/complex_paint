@@ -33,3 +33,11 @@ void MyWidget::paintEvent(QPaintEvent* e)
     e->accept();
 }
 
+
+void MyWidget::resizeEvent(QResizeEvent* e)
+{
+    if (!e->size().isEmpty()) {
+        m_img = m_img.copy(QRect(QPoint(0, 0), e->size()));
+    }
+    e->accept();
+}

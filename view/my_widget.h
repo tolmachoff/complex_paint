@@ -18,6 +18,8 @@ public:
 protected:
     void paintEvent(QPaintEvent* e) override;
 
+    void resizeEvent(QResizeEvent* e) override;
+
 
     QImage m_img;
 

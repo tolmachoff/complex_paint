@@ -10,7 +10,7 @@ MyActiveWidget::MyActiveWidget(QWidget* parent, Qt::WindowFlags f)
     , m_last_x(-1)
     , m_last_y(-1)
 {
-    connect(this, SIGNAL(image_rdy(QImage)), this, SLOT(image_update(QImage)));
+
 }
 
 
@@ -41,7 +41,9 @@ void MyActiveWidget::mouseMoveEvent(QMouseEvent* e)
         m_last_x = e->x();
         m_last_y = e->y();
 
-        emit image_rdy(m_img.copy(0, 0, width(), height()));
+        update();
+
+        emit image_rdy(m_img);
     }
     e->accept();
 }
