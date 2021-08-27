@@ -25,7 +25,6 @@ protected:
 
     bool m_is_painting;
 
-    int m_last_x;
-    int m_last_y;
+    QPoint m_last_pos;
 
 };

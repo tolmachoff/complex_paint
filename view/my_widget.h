@@ -18,7 +18,9 @@ public:
 protected:
     void paintEvent(QPaintEvent* e) override;
 
-    void resizeEvent(QResizeEvent* e) override;
+    QPoint window_to_img(QPoint p);
+
+    QPoint img_to_window(QPoint p);
 
 
     QImage m_img;
