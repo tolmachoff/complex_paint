@@ -37,7 +37,16 @@ void MyWidget::paintEvent(QPaintEvent* e)
 void MyWidget::resizeEvent(QResizeEvent* e)
 {
     if (!e->size().isEmpty()) {
-        m_img = m_img.copy(QRect(QPoint(0, 0), e->size()));
+        if (!e->oldSize().isEmpty()) {
+            QPoint old_center = {e->oldSize().width() / 2, e->oldSize().height() / 2};
+            QPoint new_center = {e->size().width() / 2, e->size().height() / 2};
+            QPoint new_topleft = old_center - new_center;
+
+            m_img = m_img.copy(QRect(new_topleft, e->size()));
+        }
+        else {
+            m_img = m_img.copy(QRect(QPoint(0, 0), e->size()));
+        }
     }
     e->accept();
 }
